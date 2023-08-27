@@ -1,5 +1,5 @@
 function doctor_signup(){
-    window.location.href='doctor_signup.html'
+    window.location.href='doctor_login.php'
 }
 
 

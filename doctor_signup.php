@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
+
 <html lang="en">
 
 <head>
@@ -27,56 +31,59 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"> <a href="doctor_signup.html" class="active">Sign Up </a> / <a href="doctor_login.html">Login</a></p>
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"> <a href="doctor_signup.php" class="active">Sign Up </a> / <a href="doctor_login.php">Login</a></p>
 
-                                    <form class="mx-1 mx-md-4">
+                                    <form class="mx-1 mx-md-4" method="POST" action ="">
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="text" id="form3Example1c" class="form-control" required/>
+                                                <input type="text" id="form3Example1c" name="name" class="form-control" required/>
                                                 <label class="form-label" for="form3Example1c">Your Name</label>
                                             </div>
                                         </div>
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="text" id="form3Example1c" class="form-control" required/>
+                                                <input type="text" name="cname" id="form3Example1c" class="form-control" required/>
                                                 <label class="form-label" for="form3Example1c">Clinic Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <input type="text" id="form3Example4c" name="number" class="form-control" required/>
+                                                <label class="form-label" for="form3Example4c">Phone Number</label>
                                             </div>
                                         </div>
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="email" id="form3Example3c" class="form-control" required/>
+                                                <input type="email" name="email" id="form3Example3c" class="form-control" required/>
                                                 <label class="form-label" for="form3Example3c">Your Email</label>
                                             </div>
                                         </div>
 
-                                        <div class="d-flex flex-row align-items-center mb-4">
-                                            <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                            <div class="form-outline flex-fill mb-0">
-                                                <input type="password" id="form3Example4c" class="form-control" required/>
-                                                <label class="form-label" for="form3Example4c">Phone Number</label>
-                                            </div>
-                                        </div>
+                                        
 
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="password" id="form3Example4cd" class="form-control" required/>
+                                                <input type="password" name="pass" id
+                                                ="form3Example4cd" class="form-control" required/>
                                                 <label class="form-label" for="form3Example4cd">
                                                     password</label>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <button type="button" class="btn btn-primary btn-lg">Register</button>
+                                            <input type = "submit" value = "Register" class="btn btn-primary btn-lg" name = "submit1">
                                         </div>
+                                        
 
                                     </form>
-
-                                </div>
+                                    </div>
+                                                                  
                                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
                                     <img src="photo.jpeg"
@@ -90,6 +97,44 @@
             </div>
         </div>
     </section>
+
+    <?php
+include 'connection.php';
+if(isset($_POST['submit1'])){
+$name =$_POST['name'];
+$cname = $_POST['cname'];
+$number = $_POST['number'];
+$email = $_POST['email'];
+$pass = mysqli_real_escape_string($con,$_POST['pass']);
+$cpass =password_hash($pass,PASSWORD_BCRYPT);  
+
+$selemail = "select * from registration where email ='$email'";
+$emailres = mysqli_query($con,$selemail);
+$emailcount= mysqli_num_rows($emailres);
+if($emailcount>0){
+    ?>
+    <script>
+        alert("This email is alredy exist");
+        location.replace('doctor_login.php');
+
+        </script>
+        <?php
+}
+else {
+        $insertQue = "insert into registration(name,cname,number,email,pass) values ('$name','$cname','$number','$email','$cpass')";
+        $res = mysqli_query($con,$insertQue);
+        if($res){
+            ?>
+            <script>
+                    alert('Succesfully inserted');
+                    location.replace('doctor_login.php');
+            </script>
+            <?php 
+             }
+
+}
+}
+?>
 </body>
 <script src="script.js"></script>
 

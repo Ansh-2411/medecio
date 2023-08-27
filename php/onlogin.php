@@ -13,7 +13,7 @@ $createTable = "CREATE TABLE IF NOT EXISTS $tablename (
     peDate varchar(255),
     peIssue varchar(255),
 );
-);
+);"
                        
 ?>
 

@@ -29,7 +29,7 @@
       </div>
       <div class="nav_right">
         <div class="doctor btn" onclick="doctor_signup()">
-          <p>Doctor Signup</p>
+          <p>Doctor Login</p>
         </div>
       </div>
     </div>
@@ -286,30 +286,30 @@
         fugiat sit in iste officiis commodi quidem hic quas.
       </p>
       <div>
-        <form action="" class="">
+        <form action="" class="" method="POST">
           <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3">
             <div class="col">
               <label for="uname" class=""></label>
-              <input type="text" name="" id="uname" class="p-2 w-100" placeholder="Your name" required>
+              <input type="text" name="name" id="uname" class="p-2 w-100" placeholder="Your name" required>
 
             </div>
             <div class="col">
               <label for="mail" class=""></label>
-              <input type="email" name="" id="mail" class="p-2 w-100" placeholder="Your E-mail" required>
+              <input type="email" name="email" id="mail" class="p-2 w-100" placeholder="Your E-mail" required>
 
             </div>
             <div class="col">
               <label for="phone" class=""></label>
-              <input type="tel" name="" id="phone" class="p-2 w-100" placeholder="Your Phone" required>
+              <input type="tel" name="Phone" id="phone" class="p-2 w-100" placeholder="Your Phone" required>
             </div>
           </div>
           <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3">
             <div class="col">
               <label for="date" class=""></label>
-              <input type="date" name="" id="date" class="p-2 w-100" placeholder="Your name" required>
+              <input type="date" name="date" id="date" class="p-2 w-100" placeholder="Your name" required>
             </div>
             <div class="col">
-              <select name="" id="" class="p-2 w-100 mt-4">
+              <select name="dep" id="" class="p-2 w-100 mt-4">
                 <option value="1" selected>Select department</option>
                 <option value="2">department1</option>
                 <option value="3">department2</option>
@@ -317,7 +317,7 @@
               </select>
             </div>
             <div class="col">
-              <select name="" id="" class="p-2 w-100 mt-4">
+              <select name="doc" id="" class="p-2 w-100 mt-4">
                 <option value="1" selected>Select doctor</option>
                 <option value="2">doctor1</option>
                 <option value="3">doctor2</option>
@@ -333,10 +333,11 @@
           </div>
           <div class="row">
             <div class="col mt-4">
-              <input type="submit" class="btn my-oppo-btn rounded-5 px-4" value="Make an Appoitment"    style="padding: 10px;">
+              <input type="submit" name="submit1" class="btn my-oppo-btn rounded-5 px-4" value="Make an Appoitment"    style="padding: 10px;">
             </div>
           </div>
         </form>
+      
       </div>
     </div>
   </div>
@@ -352,7 +353,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
-  <script src="script.js"></script>
+  <script>
+    <?php include 'script.js'?></script>
 </body>
 
 </html>

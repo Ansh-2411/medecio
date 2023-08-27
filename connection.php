@@ -2,15 +2,15 @@
 $server = 'localhost';
 $username= 'root';
 $password= '';
-$db = 'Health';
+$db = 'medecio';
 
 $con = mysqli_connect($server,$username,$password,$db);
  if($con){
     // echo"Connection successful";
      ?>
- <script>
+ <!-- <script>
     alert("Connection successful")
- </script>
+ </script> -->
  <?php
  }
  else {
